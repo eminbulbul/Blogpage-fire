@@ -11,9 +11,11 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import "./Navbar.css";
+import { useNavigate } from "react-router";
 
-const pages = ["Products", "Pricing", "Blog"];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+const pages = ["<M.Emin/>"];
 
 const Navbar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -33,16 +35,24 @@ const Navbar = () => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
-
+  const navigate = useNavigate();
   return (
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography
+            onClick={() => {
+              handleCloseUserMenu();
+              navigate("/");
+            }}
             variant="h6"
             noWrap
             component="div"
-            sx={{ mr: 2, display: { xs: "none", md: "flex" } }}
+            sx={{
+              cursor: "pointer",
+              mr: 2,
+              display: { xs: "none", md: "flex" },
+            }}
           >
             LOGO
           </Typography>
@@ -83,31 +93,36 @@ const Navbar = () => {
               ))}
             </Menu>
           </Box>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
-          >
-            LOGO
-          </Typography>
+          {/* ortadaki yazi kismi */}
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
               <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "white", display: "block" }}
+                onClick={() => {
+                  handleCloseUserMenu();
+                  navigate("/");
+                }}
+                className="middleText"
+                sx={{
+                  my: 2,
+                  color: "#F5DEB1",
+                  display: "block",
+                  m: "auto",
+                  fontSize: "2rem",
+                }}
               >
-                {page}
+                <span className="middleSpan">────</span> {page}
+                <span className="middleSpan">Blog</span>
+                <span className="middleSpan">────</span>
               </Button>
             ))}
           </Box>
 
+          {/* profil iconu kismi */}
           <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton>
+            <Tooltip title="Open Profile Settings">
+              <AccountCircleIcon onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                <Avatar alt="AccountCircle" src={AccountCircleIcon} />
+              </AccountCircleIcon>
             </Tooltip>
             <Menu
               sx={{ mt: "45px" }}
@@ -125,11 +140,23 @@ const Navbar = () => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
+              {/* Login register kismi burada  */}
+              <MenuItem
+                onClick={() => {
+                  handleCloseUserMenu();
+                  navigate("/login");
+                }}
+              >
+                <Typography textAlign="center">Login</Typography>
+              </MenuItem>
+              <MenuItem
+                onClick={() => {
+                  handleCloseUserMenu();
+                  navigate("/register");
+                }}
+              >
+                <Typography textAlign="center">Register</Typography>
+              </MenuItem>
             </Menu>
           </Box>
         </Toolbar>
