@@ -38,7 +38,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   return (
     <AppBar position="static">
-      <Container maxWidth="xl">
+      <Container className="nav-container" maxWidth="xl">
         <Toolbar disableGutters>
           <Typography
             onClick={() => {
@@ -107,10 +107,12 @@ const Navbar = () => {
                   color: "#F5DEB1",
                   display: "block",
                   m: "auto",
-                  fontSize: "2rem",
+                  fontSize: "1.5rem",
+                  fontWeight: 600,
                 }}
               >
-                <span className="middleSpan">────</span> {page}
+                <span className="middleSpan">────</span>
+                {page}
                 <span className="middleSpan">Blog</span>
                 <span className="middleSpan">────</span>
               </Button>

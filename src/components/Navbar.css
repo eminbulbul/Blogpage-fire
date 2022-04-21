@@ -2,6 +2,11 @@
 .middleSpan{
     font-family: 'Girassol', cursive;
     color: white;
-    font-size: 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
     
+    
+}
+.nav-container{
+    background-color: #046582;
 }
