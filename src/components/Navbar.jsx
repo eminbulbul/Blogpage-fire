@@ -37,7 +37,7 @@ const Navbar = () => {
   };
   const navigate = useNavigate();
   return (
-    <AppBar position="static">
+    <AppBar position="static" className="nav-container">
       <Container className="nav-container" maxWidth="xl">
         <Toolbar disableGutters>
           <Typography
