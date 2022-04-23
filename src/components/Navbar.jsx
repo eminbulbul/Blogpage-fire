@@ -1,13 +1,14 @@
 import * as React from "react";
+import { useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
+
 import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
-import MenuIcon from "@mui/icons-material/Menu";
+
 import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
+
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
@@ -15,6 +16,7 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import "./Navbar.css";
 import { useNavigate } from "react-router";
 import claruswayLogo from "../assets/cw.jpeg";
+import { logOut } from "../helpers/firebase";
 
 const pages = ["<M.Emin/>"];
 
@@ -38,7 +40,9 @@ const Navbar = () => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
   const navigate = useNavigate();
+
   return (
     <AppBar position="static" className="nav-container">
       <Container className="nav-container" maxWidth="xxl">
@@ -116,22 +120,54 @@ const Navbar = () => {
               onClose={handleCloseUserMenu}
             >
               {/* Login register kismi burada  */}
-              <MenuItem
-                onClick={() => {
-                  handleCloseUserMenu();
-                  navigate("/login");
-                }}
-              >
-                <Typography textAlign="center">Login</Typography>
-              </MenuItem>
-              <MenuItem
-                onClick={() => {
-                  handleCloseUserMenu();
-                  navigate("/register");
-                }}
-              >
-                <Typography textAlign="center">Register</Typography>
-              </MenuItem>
+              {currentUser ? (
+                <>
+                  <MenuItem
+                    onClick={() => {
+                      navigate("/profil");
+                      setAnchorElUser(null);
+                    }}
+                  >
+                    <Typography textAlign="center">Profile</Typography>
+                  </MenuItem>
+                  <MenuItem
+                    onClick={() => {
+                      navigate("/newblog");
+                      setAnchorElUser(null);
+                    }}
+                  >
+                    <Typography textAlign="center">New</Typography>
+                  </MenuItem>
+                  <MenuItem
+                    onClick={() => {
+                      logOut();
+                      navigate("/");
+                      setAnchorElUser(null);
+                    }}
+                  >
+                    <Typography textAlign="center">Logout</Typography>
+                  </MenuItem>{" "}
+                </>
+              ) : (
+                <>
+                  <MenuItem
+                    onClick={() => {
+                      navigate("/login");
+                      setAnchorElUser(null);
+                    }}
+                  >
+                    <Typography textAlign="center">Login</Typography>
+                  </MenuItem>
+                  <MenuItem
+                    onClick={() => {
+                      navigate("/register");
+                      setAnchorElUser(null);
+                    }}
+                  >
+                    <Typography textAlign="center">Register</Typography>
+                  </MenuItem>
+                </>
+              )}
             </Menu>
           </Box>
         </Toolbar>
