@@ -36,7 +36,7 @@ export default function SimpleContainer() {
 
             <div className="login-textfields">
               <TextField
-                type={"email"}
+                type="email"
                 id="outlined-basic"
                 label="Email"
                 variant="outlined"
@@ -44,7 +44,7 @@ export default function SimpleContainer() {
               />
 
               <TextField
-                type={"password"}
+                type="password"
                 id="outlined-basic"
                 label="Password"
                 variant="outlined"
