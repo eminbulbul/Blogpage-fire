@@ -21,7 +21,7 @@ import { logOut } from "../helpers/firebase";
 const pages = ["<M.Emin/>"];
 
 const Navbar = () => {
-  const currentUser = true;
+  const currentUser = false;
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -121,7 +121,7 @@ const Navbar = () => {
             >
               {/* Login register kismi burada  */}
               {currentUser ? (
-                <>
+                <div>
                   <MenuItem
                     onClick={() => {
                       navigate("/profil");
@@ -146,10 +146,10 @@ const Navbar = () => {
                     }}
                   >
                     <Typography textAlign="center">Logout</Typography>
-                  </MenuItem>{" "}
-                </>
+                  </MenuItem>
+                </div>
               ) : (
-                <>
+                <div>
                   <MenuItem
                     onClick={() => {
                       navigate("/login");
@@ -166,7 +166,7 @@ const Navbar = () => {
                   >
                     <Typography textAlign="center">Register</Typography>
                   </MenuItem>
-                </>
+                </div>
               )}
             </Menu>
           </Box>

@@ -8,7 +8,7 @@ import BlogIcon from "../assets/blok.png";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import googleLogo from "../assets/google.png";
-import { createUser } from "../helpers/firebase";
+import { createUser, signUpProvider } from "../helpers/firebase";
 import { useNavigate } from "react-router";
 
 export default function SimpleContainer() {
@@ -19,7 +19,9 @@ export default function SimpleContainer() {
   const [password, setPassword] = useState();
 
   const navigate = useNavigate();
-
+  const handleProviderRegister = () => {
+    signUpProvider(navigate);
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
     createUser(email, password, navigate);
@@ -47,7 +49,7 @@ export default function SimpleContainer() {
 
                 <TextField
                   type={"password"}
-                  id="outlined-basic"
+                  id="outlined-basic2"
                   label="Password"
                   variant="outlined"
                   required
@@ -59,7 +61,7 @@ export default function SimpleContainer() {
                 <Button type="submit" variant="contained">
                   REGISTER
                 </Button>
-                <Button>
+                <Button onClick={handleProviderRegister}>
                   WITH
                   <span>
                     <img

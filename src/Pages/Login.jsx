@@ -9,7 +9,7 @@ import Button from "@mui/material/Button";
 import googleLogo from "../assets/google.png";
 import { useState } from "react";
 import { useNavigate } from "react-router";
-import { signIn } from "../helpers/firebase";
+import { signIn, signUpProvider } from "../helpers/firebase";
 // import { blueGrey } from "@mui/material/colors";
 // import { createTheme } from "@mui/material/styles";
 
@@ -28,6 +28,9 @@ export default function SimpleContainer() {
 
   // buraya email ve password bos birakildiginda error mesaji verilmesi fonksiyonu atanmali }
   const navigate = useNavigate();
+  const handleProviderRegister = () => {
+    signUpProvider(navigate);
+  };
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const handleSubmit = (e) => {
@@ -57,7 +60,7 @@ export default function SimpleContainer() {
 
                 <TextField
                   type="password"
-                  id="outlined-basic"
+                  id="outlined-basic2"
                   label="Password"
                   variant="outlined"
                   required
@@ -70,13 +73,14 @@ export default function SimpleContainer() {
                   LOGIN
                 </Button>
                 <Button
-                // sx={{
-                //   bgcolor: "main",
-                //   "&:hover": {
-                //     bgcolor: "primary.main",
-                //     color: "white",
-                //   },
-                // }} bu sekilde bg color degise biliyor renkleri nasil secilecek
+                  // sx={{
+                  //   bgcolor: "main",
+                  //   "&:hover": {
+                  //     bgcolor: "primary.main",
+                  //     color: "white",
+                  //   },
+                  // }} bu sekilde bg color degise biliyor renkleri nasil secilecek
+                  onClick={handleProviderRegister}
                 >
                   WITH
                   <span>

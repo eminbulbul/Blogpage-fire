@@ -1,9 +1,11 @@
-import { async } from "@firebase/util";
 import { initializeApp } from "firebase/app";
 import {
   createUserWithEmailAndPassword,
   getAuth,
+  GoogleAuthProvider,
+  onAuthStateChanged,
   signInWithEmailAndPassword,
+  signInWithPopup,
   signOut,
 } from "firebase/auth";
 
@@ -11,12 +13,12 @@ import {
 // See: https://firebase.google.com/docs/web/learn-more#config-object
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAgmpcIO9yPiFn9EKPLOyT6WU7ehfoBGfY",
-  authDomain: "fire-blog-c45e3.firebaseapp.com",
-  projectId: "fire-blog-c45e3",
-  storageBucket: "fire-blog-c45e3.appspot.com",
-  messagingSenderId: "1060643001330",
-  appId: "1:1060643001330:web:e25513f7d0e5625899916b",
+  apiKey: process.env.REACT_APP_apiKey,
+  authDomain: process.env.REACT_APP_authDomain,
+  projectId: process.env.REACT_APP_projectId,
+  storageBucket: process.env.REACT_APP_storageBucket,
+  messagingSenderId: process.env.REACT_APP_messagingSenderId,
+  appId: process.env.REACT_APP_appId,
 };
 
 // Initialize Firebase
@@ -54,4 +56,28 @@ export const signIn = async (email, password, navigate) => {
 export const logOut = () => {
   signOut(auth);
   alert("Succesfully LogOut");
+};
+
+export const userObserver = (setCurrentUser) => {
+  onAuthStateChanged(auth, (currentUser) => {
+    if (currentUser) {
+      setCurrentUser(currentUser);
+    } else {
+      setCurrentUser(false);
+    }
+  });
+};
+
+export const signUpProvider = (navigate) => {
+  const provider = new GoogleAuthProvider();
+
+  signInWithPopup(auth, provider)
+    .then((result) => {
+      console.log(result);
+      navigate("/");
+    })
+
+    .catch((error) => {
+      console.log(error);
+    });
 };
