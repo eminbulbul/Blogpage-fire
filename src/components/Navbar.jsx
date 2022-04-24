@@ -1,14 +1,11 @@
 import * as React from "react";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
-
 import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
-
 import Container from "@mui/material/Container";
-
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
@@ -17,11 +14,12 @@ import "./Navbar.css";
 import { useNavigate } from "react-router";
 import claruswayLogo from "../assets/cw.jpeg";
 import { logOut } from "../helpers/firebase";
+import { AuthContext } from "../context/AuthContext";
 
 const pages = ["<M.Emin/>"];
 
 const Navbar = () => {
-  const currentUser = false;
+  // const currentUser = false;
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -42,6 +40,8 @@ const Navbar = () => {
   };
 
   const navigate = useNavigate();
+
+  const { currentUser } = useContext(AuthContext);
 
   return (
     <AppBar position="static" className="nav-container">
@@ -124,7 +124,7 @@ const Navbar = () => {
                 <div>
                   <MenuItem
                     onClick={() => {
-                      navigate("/profil");
+                      navigate("/profile");
                       setAnchorElUser(null);
                     }}
                   >
