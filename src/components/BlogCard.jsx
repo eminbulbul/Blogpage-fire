@@ -63,7 +63,7 @@ export default function BlogCard({ item, index }) {
               }}
             >
               <h3>{item.title}</h3>
-              <h6 style={{ color: "grey" }}>Date Here</h6>
+              <h6 style={{ color: "grey" }}>{item.date}</h6>
             </div>
             {item.content}
           </Typography>

@@ -10,10 +10,12 @@ import { useState, useContext } from "react";
 import { useNavigate } from "react-router";
 import { BlogContext } from "../context/BlogContext";
 
+const initialValues = { title: "", content: "", imageURL: "" };
+
 export default function NewBlog() {
   const navigate = useNavigate();
 
-  const [info, setInfo] = useState();
+  const [info, setInfo] = useState(initialValues);
   const { AddBlog } = useContext(BlogContext);
 
   const handleSubmit = (e) => {
