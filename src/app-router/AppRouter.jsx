@@ -5,7 +5,8 @@ import Login from "../Pages/Login";
 import NewBlog from "../Pages/NewBlog";
 import Profile from "../Pages/Profile";
 import Register from "../Pages/Register";
-
+import Details from "../Pages/Details";
+import PrivateRouter from "./PrivateRouter";
 const AppRouter = () => {
   return (
     <div>
@@ -17,6 +18,9 @@ const AppRouter = () => {
           <Route path="/register" element={<Register />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/newBlog" element={<NewBlog />} />
+          <Route element={<PrivateRouter />}>
+            <Route path="/details/" element={<Details />} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </div>
