@@ -2,14 +2,13 @@ import * as React from "react";
 import BlogIcon from "../assets/blok.png";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import { useLocation } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import { useState, useContext } from "react";
 import CssBaseline from "@mui/material/CssBaseline";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import "../Pages/loginRegister.css";
 import { BlogContext } from "../context/BlogContext";
-import { Link } from "react-router-dom";
 
 const BlogForm = () => {
   const location = useLocation();
@@ -19,15 +18,19 @@ const BlogForm = () => {
     title: item.title,
     content: item.content,
     imageURL: item.imageURL,
+    id: item.id,
+    author: item.author,
+    date: item.date,
   };
 
   const [info, setInfo] = useState(initialValues);
-  const { AddBlog, EditBlog } = useContext(BlogContext);
+  const { EditBlog } = useContext(BlogContext);
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleUpdate = (e) => {
     e.preventDefault();
-    EditBlog();
-    AddBlog(info);
+    EditBlog(info);
+    navigate("/");
   };
   const handleChange = (e) => {
     e.preventDefault();
@@ -40,10 +43,10 @@ const BlogForm = () => {
       <React.Fragment>
         <CssBaseline />
         <Container maxWidth="sm">
-          <form onSubmit={handleSubmit}>
+          <form>
             <Box className="login-box">
               <img className="blog-icon" src={BlogIcon} alt="blog_icon" />
-              <h2>── UPDATE {item.title} ──</h2>
+              <h2>── UPDATE {info.title} ──</h2>
 
               <div className="login-textfields">
                 <TextField
@@ -79,11 +82,13 @@ const BlogForm = () => {
               <div className="login-buttons">
                 {/* buttonlara hover ve background color eklenmeli */}
 
-                <Link to={-1}>
-                  <Button type="submit" variant="contained">
-                    UPDATE
-                  </Button>
-                </Link>
+                <Button
+                  onClick={handleUpdate}
+                  type="submit"
+                  variant="contained"
+                >
+                  UPDATE
+                </Button>
               </div>
             </Box>
           </form>

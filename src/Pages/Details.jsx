@@ -42,7 +42,7 @@ const Details = () => {
       >
         <CardMedia
           component="img"
-          sx={{ height: "40rem" }}
+          sx={{ height: "30rem" }}
           image={item.imageURL}
           alt={item.title}
         />

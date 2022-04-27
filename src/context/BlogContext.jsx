@@ -65,11 +65,11 @@ const BlogContextProvider = ({ children }) => {
   };
 
   //! Edit Database
-  const EditBlog = (item) => {
+  const EditBlog = (info) => {
     const db = getDatabase();
     const updates = {};
 
-    updates["fireblogDb/" + item.index] = item;
+    updates["fireblogDb/" + info.id] = info;
     return update(ref(db), updates);
   };
 
