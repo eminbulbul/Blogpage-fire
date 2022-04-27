@@ -58,10 +58,10 @@ const BlogContextProvider = ({ children }) => {
   };
   //! Remove Database
 
-  const DeleteBlog = (index) => {
+  const DeleteBlog = (id) => {
     const db = getDatabase();
     const userRef = ref(db, "fireblogDb");
-    remove(ref(db, "fireblogDb/" + index));
+    remove(ref(db, "fireblogDb/" + id));
   };
 
   //! Edit Database

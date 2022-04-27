@@ -23,8 +23,8 @@ const Details = () => {
   const { DeleteBlog } = useContext(BlogContext);
   const { currentUser } = useContext(AuthContext);
 
-  const handleErase = () => {
-    DeleteBlog();
+  const handleErase = (id) => {
+    DeleteBlog(id);
     navigate("/");
   };
   const handleUpdate = () => {
@@ -97,7 +97,12 @@ const Details = () => {
           <Button onClick={handleUpdate} variant="contained">
             UPDATE
           </Button>
-          <Button onClick={handleErase} variant="contained">
+          <Button
+            onClick={() => {
+              handleErase(item.id);
+            }}
+            variant="contained"
+          >
             DELETE
           </Button>
         </div>
