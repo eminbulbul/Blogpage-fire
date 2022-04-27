@@ -80,6 +80,7 @@ export default function BlogCard({ item, index }) {
           </Typography>
         </CardContent>
       </div>
+
       <CardActions disableSpacing>
         <IconButton
           onClick={() => {

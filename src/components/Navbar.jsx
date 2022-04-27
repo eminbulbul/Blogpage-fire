@@ -85,6 +85,12 @@ const Navbar = () => {
             ))}
           </Box>
 
+          <span>
+            {currentUser?.displayName
+              ? currentUser?.displayName
+              : currentUser.email}
+          </span>
+
           {/* profil iconu kismi */}
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open Profile Settings">

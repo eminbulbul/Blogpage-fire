@@ -7,6 +7,7 @@ import Profile from "../Pages/Profile";
 import Register from "../Pages/Register";
 import Details from "../Pages/Details";
 import PrivateRouter from "./PrivateRouter";
+import BlogForm from "../components/BlogForm";
 const AppRouter = () => {
   return (
     <div>
@@ -20,6 +21,7 @@ const AppRouter = () => {
             <Route path="/profile" element={<Profile />} />
             <Route path="/newBlog" element={<NewBlog />} />
             <Route path="/details/" element={<Details />} />
+            <Route path="/blogform" element={<BlogForm />} />
           </Route>
         </Routes>
       </BrowserRouter>

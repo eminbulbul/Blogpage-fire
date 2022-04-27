@@ -1,4 +1,4 @@
-import { useLocation } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import * as React from "react";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
@@ -10,12 +10,26 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import Button from "@mui/material/Button";
-// import { useContext } from "react";
-// import { AuthContext } from "../context/AuthContext";
+import { useContext } from "react";
+import { BlogContext } from "../context/BlogContext";
+
+import { AuthContext } from "../context/AuthContext";
 
 const Details = () => {
   const location = useLocation();
   const item = location.state.item;
+
+  const navigate = useNavigate();
+  const { DeleteBlog } = useContext(BlogContext);
+  const { currentUser } = useContext(AuthContext);
+
+  const handleErase = () => {
+    DeleteBlog();
+    navigate("/");
+  };
+  const handleUpdate = () => {
+    navigate("/blogform", { state: { item } });
+  };
 
   return (
     <div>
@@ -78,10 +92,16 @@ const Details = () => {
           <span>1</span>
         </CardActions>
       </Card>
-      <div style={{}}>
-        <Button variant="contained">UPDATE</Button>
-        <Button variant="contained">DELETE</Button>
-      </div>
+      {currentUser === item.author && (
+        <div style={{}}>
+          <Button onClick={handleUpdate} variant="contained">
+            UPDATE
+          </Button>
+          <Button onClick={handleErase} variant="contained">
+            DELETE
+          </Button>
+        </div>
+      )}
     </div>
   );
 };

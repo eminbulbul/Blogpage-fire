@@ -1,6 +1,14 @@
 //! database add and call functions
 
-import { getDatabase, ref, set, push, onValue } from "firebase/database";
+import {
+  getDatabase,
+  ref,
+  set,
+  push,
+  onValue,
+  remove,
+  update,
+} from "firebase/database";
 import { createContext, useState, useEffect, useContext } from "react";
 import { AuthContext } from "./AuthContext";
 
@@ -48,8 +56,25 @@ const BlogContextProvider = ({ children }) => {
     }, []);
     return { isLoading, blogList };
   };
+  //! Remove Database
+
+  const DeleteBlog = (index) => {
+    const db = getDatabase();
+    const userRef = ref(db, "fireblogDb");
+    remove(ref(db, "fireblogDb/" + index));
+  };
+
+  //! Edit Database
+  const EditBlog = (item) => {
+    const db = getDatabase();
+    const updates = {};
+
+    updates["fireblogDb/" + item.index] = item;
+    return update(ref(db), updates);
+  };
+
   return (
-    <BlogContext.Provider value={{ BlogFetch, AddBlog }}>
+    <BlogContext.Provider value={{ BlogFetch, AddBlog, DeleteBlog, EditBlog }}>
       {children}
     </BlogContext.Provider>
   );
