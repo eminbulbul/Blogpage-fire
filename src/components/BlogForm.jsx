@@ -22,10 +22,11 @@ const BlogForm = () => {
   };
 
   const [info, setInfo] = useState(initialValues);
-  const { AddBlog } = useContext(BlogContext);
+  const { AddBlog, EditBlog } = useContext(BlogContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    EditBlog();
     AddBlog(info);
   };
   const handleChange = (e) => {
@@ -51,7 +52,7 @@ const BlogForm = () => {
                   label="Title"
                   variant="outlined"
                   name="title"
-                  value={item.title}
+                  value={info.title}
                   onChange={handleChange}
                 />
 
@@ -61,7 +62,7 @@ const BlogForm = () => {
                   label="Image URL"
                   variant="outlined"
                   name="imageURL"
-                  value={item.imageURL}
+                  value={info.imageURL}
                   onChange={handleChange}
                 />
                 <TextField
@@ -71,7 +72,7 @@ const BlogForm = () => {
                   label="Content"
                   variant="outlined"
                   name="content"
-                  value={item.content}
+                  value={info.content}
                   onChange={handleChange}
                 />
               </div>

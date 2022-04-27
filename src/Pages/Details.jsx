@@ -92,7 +92,7 @@ const Details = () => {
           <span>1</span>
         </CardActions>
       </Card>
-      {currentUser === item.author && (
+      {currentUser.email === item.author && (
         <div style={{}}>
           <Button onClick={handleUpdate} variant="contained">
             UPDATE

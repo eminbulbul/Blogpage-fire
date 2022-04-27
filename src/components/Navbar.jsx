@@ -88,7 +88,7 @@ const Navbar = () => {
           <span>
             {currentUser?.displayName
               ? currentUser?.displayName
-              : currentUser.email}
+              : currentUser?.email}
           </span>
 
           {/* profil iconu kismi */}
