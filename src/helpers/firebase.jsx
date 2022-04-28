@@ -8,6 +8,7 @@ import {
   signInWithPopup,
   signOut,
 } from "firebase/auth";
+import Toastify from "./toastNotify";
 
 // TODO: Replace the following with your app's Firebase project configuration
 // See: https://firebase.google.com/docs/web/learn-more#config-object
@@ -37,6 +38,7 @@ export const createUser = async (email, password, navigate) => {
     );
     console.log(userCredential);
     navigate("/login");
+    Toastify("Login Successfully");
   } catch (error) {
     alert(error.message);
   }
@@ -51,13 +53,14 @@ export const signIn = async (email, password, navigate) => {
 
     console.log(userCredential);
     navigate("/");
+    Toastify("Sign in Successfully");
   } catch (error) {
     alert(error.message);
   }
 };
 export const logOut = () => {
   signOut(auth);
-  alert("Succesfully LogOut");
+  Toastify("Succesfully LogOut");
 };
 
 export const userObserver = (setCurrentUser) => {
@@ -77,6 +80,7 @@ export const signUpProvider = (navigate) => {
     .then((result) => {
       console.log(result);
       navigate("/");
+      Toastify("Sign in Successfully");
     })
 
     .catch((error) => {

@@ -9,6 +9,7 @@ import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import "../Pages/loginRegister.css";
 import { BlogContext } from "../context/BlogContext";
+import Toastify from "../helpers/toastNotify";
 
 const BlogForm = () => {
   const location = useLocation();
@@ -27,6 +28,8 @@ const BlogForm = () => {
     EditBlog(info);
     const item = info;
     navigate("/details", { state: { item } });
+
+    Toastify(`${info.title} updated Successfully`);
   };
 
   const handleChange = (e) => {

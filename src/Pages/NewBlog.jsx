@@ -9,6 +9,7 @@ import Button from "@mui/material/Button";
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router";
 import { BlogContext } from "../context/BlogContext";
+import Toastify from "../helpers/toastNotify";
 
 const initialValues = { title: "", content: "", imageURL: "" };
 
@@ -22,6 +23,7 @@ export default function NewBlog() {
     e.preventDefault();
     AddBlog(info);
     navigate("/");
+    Toastify("New Blog Added Successfully");
   };
   const handleChange = (e) => {
     e.preventDefault();
