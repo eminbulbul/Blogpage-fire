@@ -14,24 +14,21 @@ const BlogForm = () => {
   const location = useLocation();
   const item = location.state.item;
 
-  const initialValues = {
-    title: item.title,
-    content: item.content,
-    imageURL: item.imageURL,
-    id: item.id,
-    author: item.author,
-    date: item.date,
-  };
+  const initialValues = { ...item };
 
   const [info, setInfo] = useState(initialValues);
+
   const { EditBlog } = useContext(BlogContext);
+
   const navigate = useNavigate();
 
   const handleUpdate = (e) => {
     e.preventDefault();
     EditBlog(info);
-    navigate("/");
+    const item = info;
+    navigate("/details", { state: { item } });
   };
+
   const handleChange = (e) => {
     e.preventDefault();
     const { name, value } = e.target;
