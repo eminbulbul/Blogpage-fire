@@ -35,7 +35,7 @@ export default function BlogCard({ item, index }) {
   };
 
   return (
-    <Card sx={{ width: 300, height: 500 }}>
+    <Card sx={{ width: 300, height: 550 }}>
       <div onClick={handleClick}>
         <CardMedia
           component="img"
@@ -49,11 +49,10 @@ export default function BlogCard({ item, index }) {
             variant="body2"
             color="text.secondary"
             sx={{
-              minHeight: "35%",
+              height: "35%",
               display: "block",
               backgroundColor: "#EFEEFE",
               padding: "0.5rem",
-              fontFamily: "Girassol",
             }}
           >
             <div
@@ -63,7 +62,7 @@ export default function BlogCard({ item, index }) {
                 color: "#046582",
               }}
             >
-              <h3>{item.title}</h3>
+              <h2>{item.title}</h2>
               <h6 style={{ color: "grey" }}>{item.date}</h6>
             </div>
             {`${item.content}`.substring(0, 80) + `...`}

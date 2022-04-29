@@ -71,7 +71,11 @@ export default function SimpleContainer() {
             }}
           />
 
-          <Typography component="h1" variant="h5">
+          <Typography
+            sx={{ color: "#046582", fontFamily: "Girassol" }}
+            component="h1"
+            variant="h5"
+          >
             ── REGISTER ──
           </Typography>
           <Box noValidate sx={{ mt: 1 }}>

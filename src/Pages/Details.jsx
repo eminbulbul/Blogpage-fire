@@ -35,7 +35,11 @@ const Details = () => {
     <React.Fragment>
       <CssBaseline />
       <Container maxWidth="xxl">
-        <Typography variant="h2" component="h2">
+        <Typography
+          sx={{ color: "#046582", fontFamily: "Girassol" }}
+          variant="h2"
+          component="h2"
+        >
           ──── DETAILS ────
         </Typography>
         <Box sx={{ height: "92%" }}>
@@ -50,7 +54,7 @@ const Details = () => {
           >
             <CardMedia
               component="img"
-              alt="green iguana"
+              alt={item.title}
               height="60%"
               image={item.imageURL}
               objectfit="contain"
@@ -60,21 +64,24 @@ const Details = () => {
                 display: "block",
                 backgroundColor: "#EFEEFE",
                 padding: "0.5rem",
-                fontFamily: "Girassol",
-                textTransform: "uppercase",
               }}
             >
-              <Typography gutterBottom variant="h5" component="div">
+              <Typography
+                sx={{
+                  fontFamily: "Girassol",
+                  color: "#046582",
+                  fontSize: "2rem",
+                }}
+                gutterBottom
+                variant="h5"
+                component="div"
+              >
                 {item.title}
               </Typography>
               <Typography variant="body2" color="text.secondary">
                 {item.date}
               </Typography>
-              <Typography
-                variant="body2"
-                color="text.secondary"
-                sx={{ paddingTop: ".2rem", textAlign: "start" }}
-              >
+              <Typography sx={{ textAlign: "start" }}>
                 {item.content}
               </Typography>
             </CardContent>
