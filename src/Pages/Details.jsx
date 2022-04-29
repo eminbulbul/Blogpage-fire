@@ -36,7 +36,7 @@ const Details = () => {
       <CssBaseline />
       <Container maxWidth="xxl">
         <Typography
-          sx={{ color: "#046582", fontFamily: "Girassol" }}
+          sx={{ color: "#231B1B", fontFamily: "Girassol" }}
           variant="h2"
           component="h2"
         >

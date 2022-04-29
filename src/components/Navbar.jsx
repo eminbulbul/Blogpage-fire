@@ -12,7 +12,7 @@ import MenuItem from "@mui/material/MenuItem";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import "./Navbar.css";
 import { useNavigate } from "react-router";
-import claruswayLogo from "../assets/cw.jpeg";
+import blogLogo from "../assets/blogicon.png";
 import { logOut } from "../helpers/firebase";
 import { AuthContext } from "../context/AuthContext";
 
@@ -55,7 +55,11 @@ const Navbar = () => {
               display: { xs: "flex" },
             }}
           >
-            <img src={claruswayLogo} alt="claruswayLogo" />
+            <img
+              src={blogLogo}
+              style={{ backgroundColor: "white", borderRadius: "100%" }}
+              alt="claruswayLogo"
+            />
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}></Box>
@@ -70,7 +74,8 @@ const Navbar = () => {
                 className="middleText"
                 sx={{
                   my: 2,
-                  color: "#F5DEB1",
+                  color: "#231B1B",
+
                   display: "block",
                   m: "auto",
                   fontSize: "1.5rem",

@@ -76,7 +76,7 @@ export default function NewBlog() {
           />
 
           <Typography
-            sx={{ color: "#046582", fontFamily: "Girassol" }}
+            sx={{ color: "#231B1B", fontFamily: "Girassol" }}
             component="h1"
             variant="h5"
           >
@@ -124,7 +124,7 @@ export default function NewBlog() {
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
-                style={{ backgroundColor: "#046582" }}
+                style={{ backgroundColor: "#B96AC9" }}
               >
                 SUBMIT
               </Button>

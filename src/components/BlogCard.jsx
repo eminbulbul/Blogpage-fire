@@ -35,8 +35,14 @@ export default function BlogCard({ item, index }) {
   };
 
   return (
-    <Card sx={{ width: 300, height: 550 }}>
-      <div onClick={handleClick}>
+    <Card
+      sx={{
+        width: 300,
+        height: 550,
+        boxShadow: "rgba(0, 0, 0, 0.2) 6px 6px 2px 0px",
+      }}
+    >
+      <div style={{ cursor: "pointer" }} onClick={handleClick}>
         <CardMedia
           component="img"
           height="200"
@@ -59,7 +65,7 @@ export default function BlogCard({ item, index }) {
               style={{
                 paddingTop: "1rem",
                 textAlign: "center",
-                color: "#046582",
+                color: "#B96AC9",
               }}
             >
               <h2>{`${item.title}`.substring(0, 20) + `..`}</h2>
