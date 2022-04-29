@@ -62,7 +62,7 @@ export default function BlogCard({ item, index }) {
                 color: "#046582",
               }}
             >
-              <h2>{item.title}</h2>
+              <h2>{`${item.title}`.substring(0, 20) + `..`}</h2>
               <h6 style={{ color: "grey" }}>{item.date}</h6>
             </div>
             {`${item.content}`.substring(0, 80) + `...`}
