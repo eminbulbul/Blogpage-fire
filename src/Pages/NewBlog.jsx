@@ -108,7 +108,8 @@ export default function NewBlog() {
               <TextField
                 margin="normal"
                 multiline
-                minRows={10}
+                minRows={8}
+                maxRows={10}
                 required
                 fullWidth
                 name="content"
