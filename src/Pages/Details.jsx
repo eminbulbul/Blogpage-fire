@@ -45,7 +45,7 @@ const Details = () => {
         <Box sx={{ height: "92%" }}>
           <Card
             sx={{
-              width: "50%",
+              width: "80%",
               height: "40%",
               display: "block",
               margin: "auto",
