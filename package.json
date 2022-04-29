@@ -1,4 +1,5 @@
 {
+  "homepage":"https://eminbulbul.github.io/Blogpage-fire/",
   "name": "blogpage",
   "version": "0.1.0",
   "private": true,
@@ -14,6 +15,7 @@
     "axios": "^0.26.1",
     "dotenv": "^16.0.0",
     "firebase": "^9.6.11",
+    "gh-pages": "^3.2.3",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router": "^6.3.0",
@@ -28,7 +30,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy":"yarn run build",
+    "deploy":"gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
