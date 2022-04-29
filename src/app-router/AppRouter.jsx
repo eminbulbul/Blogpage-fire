@@ -7,7 +7,7 @@ import Profile from "../Pages/Profile";
 import Register from "../Pages/Register";
 import Details from "../Pages/Details";
 import PrivateRouter from "./PrivateRouter";
-import BlogForm from "../components/BlogForm";
+import BlogForm from "../Pages/BlogForm";
 const AppRouter = () => {
   return (
     <div>

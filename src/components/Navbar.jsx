@@ -84,7 +84,6 @@ const Navbar = () => {
               </Button>
             ))}
           </Box>
-
           <span>
             {currentUser?.displayName
               ? currentUser?.displayName

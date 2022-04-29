@@ -60,7 +60,6 @@ const BlogContextProvider = ({ children }) => {
 
   const DeleteBlog = (id) => {
     const db = getDatabase();
-    const userRef = ref(db, "fireblogDb");
     remove(ref(db, "fireblogDb/" + id));
   };
 

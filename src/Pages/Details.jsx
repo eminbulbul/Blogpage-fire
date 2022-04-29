@@ -12,8 +12,8 @@ import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import Button from "@mui/material/Button";
 import { useContext } from "react";
 import { BlogContext } from "../context/BlogContext";
-
 import { AuthContext } from "../context/AuthContext";
+import { Box, Container, CssBaseline, Stack } from "@mui/material";
 
 const Details = () => {
   const location = useLocation();
@@ -32,83 +32,105 @@ const Details = () => {
   };
 
   return (
-    <div>
-      <Card
-        sx={{
-          margin: "auto",
-          width: "60%",
-          height: "55rem",
-        }}
-      >
-        <CardMedia
-          component="img"
-          sx={{ height: "30rem" }}
-          image={item.imageURL}
-          alt={item.title}
-        />
-        <CardContent>
-          <Typography
-            variant="body2"
-            color="text.secondary"
+    <React.Fragment>
+      <CssBaseline />
+      <Container maxWidth="xxl">
+        <Typography variant="h2" component="h2">
+          ──── DETAILS ────
+        </Typography>
+        <Box sx={{ height: "92%" }}>
+          <Card
             sx={{
+              width: "50%",
+              height: "40%",
               display: "block",
-              backgroundColor: "#EFEEFE",
-              padding: "0.5rem",
-              fontFamily: "Girassol",
+              margin: "auto",
+              marginBottom: 4,
             }}
           >
-            <div
-              style={{
-                paddingTop: "1rem",
-                textAlign: "center",
-                color: "#046582",
+            <CardMedia
+              component="img"
+              alt="green iguana"
+              height="60%"
+              image={item.imageURL}
+              objectfit="contain"
+            />
+            <CardContent
+              sx={{
+                display: "block",
+                backgroundColor: "#EFEEFE",
+                padding: "0.5rem",
+                fontFamily: "Girassol",
+                textTransform: "uppercase",
               }}
             >
-              <h3>{item.title}</h3>
-              <h6 style={{ color: "grey" }}>{item.date}</h6>
-            </div>
-            {item.content}
-          </Typography>
-
-          <Typography
-            variant="body2"
-            color="text.secondary"
-            sx={{ color: "black", mt: 2 }}
-          >
-            <IconButton sx={{ color: "black", p: 0 }}>
-              <AccountCircleIcon fontSize="small" />
-            </IconButton>
-            {item.author}
-          </Typography>
-        </CardContent>
-        <CardActions disableSpacing>
-          <IconButton aria-label="add to favorites">
-            <FavoriteIcon />
-          </IconButton>
-          <span>1</span>
-          <IconButton aria-label="comment">
-            <ChatBubbleOutlineIcon />
-          </IconButton>
-          <span>1</span>
-        </CardActions>
-      </Card>
-      {currentUser.email === item.author && (
-        <div style={{}}>
-          <Button onClick={handleUpdate} variant="contained">
-            UPDATE
-          </Button>
-          <Button
-            onClick={() => {
-              handleErase(item.id);
-            }}
-            variant="contained"
-          >
-            DELETE
-          </Button>
-        </div>
-      )}
-    </div>
+              <Typography gutterBottom variant="h5" component="div">
+                {item.title}
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                {item.date}
+              </Typography>
+              <Typography
+                variant="body2"
+                color="text.secondary"
+                sx={{ paddingTop: ".2rem", textAlign: "start" }}
+              >
+                {item.content}
+              </Typography>
+            </CardContent>
+            <CardContent>
+              <Typography sx={{ color: "black", textAlign: "start" }}>
+                <IconButton sx={{ color: "black" }}>
+                  <AccountCircleIcon fontSize="medium" />
+                </IconButton>
+                {item.author}
+              </Typography>
+            </CardContent>
+            <CardActions sx={{ marginTop: -2 }}>
+              <IconButton aria-label="add to favorites">
+                <FavoriteIcon />
+              </IconButton>
+              <span>1</span>
+              <IconButton aria-label="comment">
+                <ChatBubbleOutlineIcon />
+              </IconButton>
+              <span>1</span>
+            </CardActions>
+          </Card>
+          {item.author === currentUser?.email ? (
+            <Stack
+              direction="row"
+              sx={{
+                display: "flex",
+                justifyContent: "space-around",
+                marginY: 3,
+              }}
+            >
+              <Button
+                size="large"
+                variant="contained"
+                color="primary"
+                onClick={() => {
+                  handleUpdate(item.id);
+                }}
+              >
+                Update
+              </Button>
+              <Button
+                size="large"
+                variant="contained"
+                color="error"
+                onClick={() => {
+                  handleErase(item.id);
+                }}
+              >
+                Delete
+              </Button>
+            </Stack>
+          ) : null}
+        </Box>
+      </Container>
+    </React.Fragment>
   );
 };
-
 export default Details;

@@ -1,31 +1,44 @@
 import * as React from "react";
-import { useState } from "react";
-import Box from "@mui/material/Box";
-import Container from "@mui/material/Container";
 import BlogIcon from "../assets/blok.png";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import googleLogo from "../assets/google.png";
-import { createUser, signUpProvider } from "../helpers/firebase";
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
+import { useState, useContext } from "react";
+
+import Box from "@mui/material/Box";
+import Container from "@mui/material/Container";
+
+import { BlogContext } from "../context/BlogContext";
+import Toastify from "../helpers/toastNotify";
 import { Typography } from "@mui/material";
 
-export default function SimpleContainer() {
-  // const eventHandler = ()=>{
+const BlogForm = () => {
+  const location = useLocation();
+  const item = location.state.item;
 
-  // buraya email ve password bos birakildiginda error mesaji verilmesi fonksiyonu atanmali }
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+  const initialValues = { ...item };
+
+  const [info, setInfo] = useState(initialValues);
+
+  const { EditBlog } = useContext(BlogContext);
 
   const navigate = useNavigate();
-  const handleProviderRegister = () => {
-    signUpProvider(navigate);
-  };
-  const handleSubmit = (e) => {
+
+  const handleUpdate = (e) => {
     e.preventDefault();
-    createUser(email, password, navigate);
-    console.log(email, password);
+    EditBlog(info);
+    const item = info;
+    navigate("/details", { state: { item } });
+
+    Toastify(`${info.title} updated Successfully`);
   };
+
+  const handleChange = (e) => {
+    e.preventDefault();
+    const { name, value } = e.target;
+    setInfo({ ...info, [name]: value });
+  };
+
   const style = {
     backgroundImage: `url("https://picsum.photos/1200/900")`,
     // marginTop: "150px",
@@ -36,6 +49,7 @@ export default function SimpleContainer() {
     height: "100vh",
     padding: "1rem",
   };
+
   return (
     <div style={style}>
       <Container
@@ -46,13 +60,12 @@ export default function SimpleContainer() {
           boxShadow: "rgba(0, 0, 0, 0.75) 10px 10px 5px 0px",
           backgroundColor: "#fff",
           position: "relative",
-          marginTop: "4rem",
         }}
       >
         {/* <CssBaseline /> */}
         <Box
           sx={{
-            marginTop: 0,
+            marginTop: 8,
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
@@ -72,31 +85,45 @@ export default function SimpleContainer() {
           />
 
           <Typography component="h1" variant="h5">
-            ── REGISTER ──
+            ── UPDATE {info.title} ──
           </Typography>
           <Box noValidate sx={{ mt: 1 }}>
-            <form id="register" action="" onSubmit={handleSubmit}>
+            <form id="register" action="" onSubmit={handleUpdate}>
               <TextField
                 margin="normal"
                 required
                 fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
+                id="title"
+                label="Title"
+                name="title"
                 autoFocus
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={handleChange}
+                value={info.title}
               />
               <TextField
                 margin="normal"
                 required
                 fullWidth
-                name="password"
-                label="Password"
-                type="password"
-                id="password"
-                autoComplete="current-password"
-                onChange={(e) => setPassword(e.target.value)}
+                name="imageURL"
+                label="Image URL"
+                type="url"
+                id="imageURL"
+                onChange={handleChange}
+                value={info.imageURL}
+              />
+
+              <TextField
+                margin="normal"
+                multiline
+                minRows={10}
+                required
+                fullWidth
+                name="content"
+                label="content"
+                type="textarea"
+                id="content"
+                onChange={handleChange}
+                value={info.content}
               />
 
               <Button
@@ -106,21 +133,7 @@ export default function SimpleContainer() {
                 sx={{ mt: 3, mb: 2 }}
                 style={{ backgroundColor: "#046582" }}
               >
-                REGISTER
-              </Button>
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                sx={{ mt: 3, mb: 2, color: "black", backgroundColor: "white" }}
-                onClick={handleProviderRegister}
-              >
-                WITH
-                <img
-                  src={googleLogo}
-                  alt="googleLogo"
-                  style={{ width: "6rem", height: "2rem", marginLeft: "1rem" }}
-                />
+                UPDATE
               </Button>
             </form>
           </Box>
@@ -128,4 +141,6 @@ export default function SimpleContainer() {
       </Container>
     </div>
   );
-}
+};
+
+export default BlogForm;

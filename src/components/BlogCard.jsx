@@ -49,6 +49,7 @@ export default function BlogCard({ item, index }) {
             variant="body2"
             color="text.secondary"
             sx={{
+              minHeight: "35%",
               display: "block",
               backgroundColor: "#EFEEFE",
               padding: "0.5rem",
@@ -65,7 +66,7 @@ export default function BlogCard({ item, index }) {
               <h3>{item.title}</h3>
               <h6 style={{ color: "grey" }}>{item.date}</h6>
             </div>
-            {item.content}
+            {`${item.content}`.substring(0, 80) + `...`}
           </Typography>
 
           <Typography
