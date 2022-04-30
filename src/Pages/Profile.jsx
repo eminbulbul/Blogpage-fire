@@ -21,6 +21,7 @@ export default function Profile() {
         margin: "auto",
         marginTop: "10rem",
         minWidth: 275,
+        boxShadow: "rgb(215, 180, 222) 6px 6px 2px 0px",
       }}
     >
       <CardContent>

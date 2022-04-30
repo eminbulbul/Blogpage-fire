@@ -39,7 +39,7 @@ export default function BlogCard({ item, index }) {
       sx={{
         width: 300,
         height: 550,
-        boxShadow: "rgba(0, 0, 0, 0.2) 6px 6px 2px 0px",
+        boxShadow: "rgb(215, 180, 222) 6px 6px 2px 0px",
       }}
     >
       <div style={{ cursor: "pointer" }} onClick={handleClick}>

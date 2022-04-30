@@ -66,7 +66,7 @@ export default function SimpleContainer() {
               height: "200px",
               margin: "1rem",
               padding: "0.5rem",
-              backgroundColor: "#046582",
+              backgroundColor: "#d9bfdd",
               borderRadius: "50%",
             }}
           />
